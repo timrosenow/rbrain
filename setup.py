@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="rbrain",
@@ -8,7 +8,8 @@ setup(
     author='Tim Rosenow',
     author_email='Tim.Rosenow@uwa.edu.au',
     license="MPL 2.0",
-    packages=['rbrain', 'rbrain.core', 'rbrain.segmenter'],
+    packages=find_packages(),
+    include_package_data=True,
     install_requires=[
         'keras',
         'nibabel',
