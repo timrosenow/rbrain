@@ -1,4 +1,4 @@
 """
 MRI analysis software for rodent brains.
 """
-import segmenter
+import rbrain.segmenter
