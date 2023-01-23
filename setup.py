@@ -4,7 +4,7 @@ setup(
     name="rbrain",
     version="0.1.0",
     description="MRI analyis tools for rodent brains",
-    url="https://github.com/WANIF/WANIF_MRI",
+    url="https://github.com/timrosenow/rbrain",
     author='Tim Rosenow',
     author_email='Tim.Rosenow@uwa.edu.au',
     license="MPL 2.0",
