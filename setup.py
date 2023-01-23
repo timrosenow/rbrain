@@ -11,9 +11,9 @@ setup(
     packages=['rbrain'],
     install_requires=[
         'keras',
-        'keras-models',
         'nibabel',
         'numpy',
+        'Pillow',
         'scipy',
         'tensorflow',
     ],
