@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="rbrain",
     version="0.1.0",
-    description="MRI analyis tools for rodent brains",
+    description="MRI analysis tools for rodent brains",
     url="https://github.com/timrosenow/rbrain",
     author='Tim Rosenow',
     author_email='Tim.Rosenow@uwa.edu.au',
