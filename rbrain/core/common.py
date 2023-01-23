@@ -3,7 +3,11 @@ Functions that are common to all rbrain modules.
 """
 import nibabel as nib
 import numpy as np
+import os
+import rbrain
 import subprocess as sp
+
+DEF_CONFIG_FILE = os.path.join(rbrain.__path__[0], "rbrain.cfg")
 
 
 def run_cmd(cmd_str, modules=[]):

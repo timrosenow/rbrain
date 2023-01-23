@@ -7,8 +7,8 @@ import nibabel as nib
 import numpy as np
 import os.path
 import pathlib
-from rbrain.core import defaults, exceptions
-from rbrain.core import *
+from rbrain.core.common import *
+from rbrain.core import exceptions
 from scipy import ndimage
 
 # Tensorflow imports
@@ -173,7 +173,7 @@ class NNManager:
         self.random_seed = None
 
         # First read in the default config file, for sensible defaults
-        self.load_config(defaults.DEF_CONF_FILE)
+        self.load_config(DEF_CONFIG_FILE)
         # Now read in the config file, if it exists
         if config_file is not None:
             self.load_config(config_file)
