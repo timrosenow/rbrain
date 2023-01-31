@@ -7,12 +7,10 @@ import nibabel as nib
 import numpy as np
 import os.path
 import pathlib
-from rbrain.core.common import *
-from rbrain.core import exceptions
+from core.rbrain.core import exceptions
 from scipy import ndimage
 
 # Tensorflow imports
-import tensorflow as tf
 from tensorflow import keras
 
 
@@ -144,7 +142,7 @@ class NNModelCreator:
 
 class NNManager:
     """
-    Base class to manage Neural Networks for image segmenter. Sets up all the base file and neural network methods,
+    Base class to manage Neural Networks for image rbrain-segmenter. Sets up all the base file and neural network methods,
     while leaving the actual work to subclasses.
 
     Args:
