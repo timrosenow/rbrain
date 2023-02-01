@@ -2,6 +2,7 @@
 Neural Net segmentations including training and applying on novel data.
 """
 import configparser
+import keras
 import keras.utils
 import nibabel as nib
 import numpy as np
@@ -9,9 +10,6 @@ import os.path
 import pathlib
 import rbrain.utils as rbutils
 from scipy import ndimage
-
-# Tensorflow imports
-from tensorflow import keras
 
 
 # Helper functions
