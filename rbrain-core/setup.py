@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 setup(
     name="rbrain",
@@ -8,19 +8,16 @@ setup(
     author='Tim Rosenow',
     author_email='Tim.Rosenow@uwa.edu.au',
     license="MPL 2.0",
-    packages=find_packages(),
+    packages=find_namespace_packages(),
     include_package_data=True,
     install_requires=[
-        'keras',
         'nibabel',
         'numpy',
         'Pillow',
         'scipy',
-        'tensorflow',
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
-        "Environment :: GPU :: NVIDIA CUDA",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Natural Language :: English",

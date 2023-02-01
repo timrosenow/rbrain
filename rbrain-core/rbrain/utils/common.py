@@ -3,8 +3,8 @@ Functions that are common to all rbrain modules.
 """
 import nibabel as nib
 import os
-from core import rbrain
 import subprocess as sp
+import rbrain
 
 DEF_CONFIG_FILE = os.path.join(rbrain.__path__[0], "rbrain.cfg")
 

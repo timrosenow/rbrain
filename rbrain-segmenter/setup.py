@@ -1,15 +1,14 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 setup(
-    name="rbrain",
+    name="rbrain_segmenter",
     version="0.1.0",
-    description="MRI analysis tools for rodent brains",
+    description="MRI segmentation add-on for rbrain",
     url="https://github.com/timrosenow/rbrain",
     author='Tim Rosenow',
     author_email='Tim.Rosenow@uwa.edu.au',
     license="MPL 2.0",
-    packages=find_packages(),
-    include_package_data=True,
+    packages=find_namespace_packages(),
     install_requires=[
         'keras',
         'nibabel',
@@ -17,6 +16,7 @@ setup(
         'Pillow',
         'scipy',
         'tensorflow',
+        'rbrain'
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",

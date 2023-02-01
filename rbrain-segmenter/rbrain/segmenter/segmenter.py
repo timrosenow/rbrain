@@ -7,7 +7,7 @@ import nibabel as nib
 import numpy as np
 import os.path
 import pathlib
-from core.rbrain.core import exceptions
+import rbrain.utils as rbutils
 from scipy import ndimage
 
 # Tensorflow imports
@@ -171,7 +171,7 @@ class NNManager:
         self.random_seed = None
 
         # First read in the default config file, for sensible defaults
-        self.load_config(DEF_CONFIG_FILE)
+        self.load_config(rbutils.DEF_CONFIG_FILE)
         # Now read in the config file, if it exists
         if config_file is not None:
             self.load_config(config_file)
@@ -185,7 +185,7 @@ class NNManager:
 
         """
         if not os.path.exists(config_file):
-            raise exceptions.ConfigFileNotFoundException()
+            raise rbutils.ConfigFileNotFoundException()
 
         # If no config exists yet, read in the whole file and reference the Segmentation section
         if self._config is None:
@@ -214,12 +214,12 @@ class NNManager:
             [str]: A list of nifti files in this directory.
         """
 
-        if is_nifti(img_path):
+        if rbutils.is_nifti(img_path):
             return [img_path]
 
         img_files = sorted(
             [
-                os.path.join(img_path, filename) for filename in os.listdir(img_path) if is_nifti(filename)
+                os.path.join(img_path, filename) for filename in os.listdir(img_path) if rbutils.is_nifti(filename)
             ]
         )
         return img_files
@@ -249,7 +249,7 @@ class NNManager:
             interp_order = 2
 
         for img_file in self.get_nifti_files(img_path):
-            img_data = read_nifti_file(img_file)
+            img_data = rbutils.read_nifti_file(img_file)
             # Resize the image first - zoom factor tells us the ratio to get the desired resolution
             zoom_factor = [self.img_size[0] / img_data.shape[0], self.img_size[1] / img_data.shape[1], 1]
             img_slices = np.append(img_slices,
@@ -358,7 +358,7 @@ class NNTrainer(NNManager):
 
         # Raise an invalid dataset exception if the scans and masks are not of equal length
         if scan_data.shape[0] != mask_data.shape[0]:
-            raise exceptions.InvalidDatasetException()
+            raise rbutils.InvalidDatasetException()
 
         # Normalise the scan data, for training purposes.
         scan_data = (scan_data - scan_data.mean()) / scan_data.std()
@@ -414,7 +414,7 @@ class NNTrainer(NNManager):
 
         # Raise an exception if the data has not been set up yet.
         if self.training_scan_data is None or self.training_mask_data is None:
-            raise exceptions.DatasetNotLoadedException()
+            raise rbutils.DatasetNotLoadedException()
 
         # Create the model directory, if it doesn't exist
         pathlib.Path(self.model_dir).mkdir(parents=True, exist_ok=True)
@@ -451,7 +451,7 @@ class NNTrainer(NNManager):
         Saves the model to a file (within self.model_dir) for later use.
         """
         if self.model is None:
-            raise exceptions.NNModelNotFoundException()
+            raise rbutils.NNModelNotFoundException()
 
         self.model.save(self.model_dir)
 
