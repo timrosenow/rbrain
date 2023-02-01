@@ -4,3 +4,5 @@
 /rbrain-segmenter/build/
 /rbrain-core/rbrain.egg-info/
 /rbrain-core/build/
+/rbrain-core/dist/
+/rbrain-segmenter/dist/
