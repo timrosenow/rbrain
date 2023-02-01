@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import argparse
-from segmenter import NNTrainer
+from rbrain.segmenter import NNTrainer
 
 parser = argparse.ArgumentParser("rbtrain")
 parser.add_argument("--scandir", dest='scan_dir', type=str, required=True, help='Directory of scans used for training')

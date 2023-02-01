@@ -1,2 +1,6 @@
 /build/
 /rbrain.egg-info/
+/rbrain-segmenter/rbrain_segmenter.egg-info/
+/rbrain-segmenter/build/
+/rbrain-core/rbrain.egg-info/
+/rbrain-core/build/
