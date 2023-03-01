@@ -222,7 +222,7 @@ class NNManager:
         )
         return img_files
 
-    def load_images(self, img_path, img_type="float32", is_mask=False, transpose=True):
+    def load_images(self, img_path, img_type="float32", is_mask=False, transpose=True, is_dir=True):
         """
         Loads images and masks, and converts to a numpy.ndarray in a format ready for training - i.e.
         a large array with shape (img_size_i x img_size_j x N),
@@ -233,6 +233,8 @@ class NNManager:
             img_type (str): Image type, string from np.dtype. Use "uint16" for masks (as this is readable by nifti).
             is_mask (bool): If these are mask files. If so, this affects interpolation.
             transpose (bool): Include all three X/Y/Z views separately in the image slices, e.g. for 3D scans.
+            is_dir (bool): If img_path is a directory, process all files. If it's a single file, process that only.
+                Defaults to True (i.e. assumes a directory).
 
         Returns:
             np.ndarray: the image array.
@@ -246,7 +248,17 @@ class NNManager:
         else:
             interp_order = 2
 
-        for img_file in self.get_nifti_files(img_path):
+        # List all nifti files, or just get a single file if is_file is true
+        img_files = []
+        if is_dir:
+            img_files = self.get_nifti_files(img_path)
+        else:
+            img_files = [img_path]
+
+        if len(img_files) == 0:
+            raise rbutils.InvalidDatasetException()
+
+        for img_file in img_files:
             img_data = rbutils.read_nifti_file(img_file)
             # Resize the image first - zoom factor tells us the ratio to get the desired resolution
             zoom_factor = [self.img_size[0] / img_data.shape[0], self.img_size[1] / img_data.shape[1], 1]
@@ -487,7 +499,7 @@ class NNAnalyser(NNManager):
             # We need the original scan size for later processing
             scan_nifti = nib.load(scan_file)
             scan_size = scan_nifti.shape
-            scan_data = self.load_images(scan_file, "float32", is_mask=False, transpose=False)
+            scan_data = self.load_images(scan_file, "float32", is_mask=False, transpose=False, is_dir=False)
             # Normalise the image
             scan_data = (scan_data - scan_data.mean()) / scan_data.std()
             # Create some dummy mask data to feed to the generator - not sure if necessary or not.

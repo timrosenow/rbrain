@@ -10,6 +10,7 @@ setup(
     license="MPL 2.0",
     packages=find_namespace_packages(),
     include_package_data=True,
+    package_data={'': ['rbrain.cfg']},
     install_requires=[
         'nibabel',
         'numpy',
