@@ -280,8 +280,8 @@ class NNManager:
                                        )
 
             # Finally, we need to transpose the images from image-notation (XYZ) to array notation (ZYX) for use in TF
-            img_slices = np.transpose(img_slices, [2, 1, 0])
-            return img_slices
+        img_slices = np.transpose(img_slices, [2, 1, 0])
+        return img_slices
 
 
 class NNTrainer(NNManager):
