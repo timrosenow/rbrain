@@ -279,7 +279,7 @@ class NNManager:
                                        ndimage.zoom(img_data_z, zoom_factor, order=interp_order).astype(img_type), 2
                                        )
 
-            # Finally, we need to transpose the images from image-notation (XYZ) to array notation (ZYX) for use in TF
+        # Finally, we need to transpose the images from image-notation (XYZ) to array notation (ZYX) for use in TF
         img_slices = np.transpose(img_slices, [2, 1, 0])
         return img_slices
 
